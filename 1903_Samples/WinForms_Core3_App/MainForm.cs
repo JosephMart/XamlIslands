@@ -29,10 +29,10 @@ namespace MyWinFormsApp
         {
             base.OnLayout(levent);
 
-            if (global::Samples.ManagedWinRT.MainPage.NewWinForm == null)
-            {
-                global::Samples.ManagedWinRT.MainPage.NewWinForm = MainForm.NewWinForm;
-            }
+            //if (global::Samples.ManagedWinRT.MainPage.NewWinForm == null)
+            //{
+            //    global::Samples.ManagedWinRT.MainPage.NewWinForm = MainForm.NewWinForm;
+            //}
 
             if (runTest)
             {
@@ -43,14 +43,18 @@ namespace MyWinFormsApp
         public async void OpenWindows()
         {
             var numWindows = 100;
-            MainForm form;
 
             for(int i = 0; i < numWindows; i++)
             {
-                form = new MainForm(false);
-                form.Show();
-                await Task.Delay(1000);
-                form.Close();
+                using(var form = new MainForm(false))
+                {
+                    form.Show();
+                    await Task.Delay(1000);
+                    form.Close();
+                }
+                
+                GC.Collect(2);
+                GC.WaitForPendingFinalizers();
             }
         }
 

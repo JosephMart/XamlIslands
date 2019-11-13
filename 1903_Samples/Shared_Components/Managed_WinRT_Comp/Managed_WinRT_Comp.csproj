@@ -115,7 +115,7 @@
       <Version>6.2.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Win32.UI.XamlApplication">
-      <Version>6.0.0-preview6.4</Version>
+      <Version>6.0.0-build.218.g54f48195e0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
